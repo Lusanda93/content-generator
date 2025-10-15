@@ -91,7 +91,7 @@ const TextGenerator = () => {
         <Card className="mt-6 p-6 bg-gradient-to-br from-card to-card/80 border-primary/20 shadow-lg">
           <div className="space-y-4">
             <div className="prose prose-invert max-w-none">
-              <pre className="whitespace-pre-wrap text-foreground bg-input/30 p-4 rounded-lg">
+              <pre className="whitespace-pre-wrap text-foreground bg-input/30 p-4 rounded-lg font-[Arial,sans-serif]">
                 {generatedText}
               </pre>
             </div>
