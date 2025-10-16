@@ -71,7 +71,6 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 47% 11%;
     --foreground: 210 40% 98%;
   }
 }
