@@ -34,6 +34,14 @@ const TextGenerator = () => {
 
       if (data.text) {
         setGeneratedText(data.text);
+        
+        // Save to history
+        await supabase.from('generations').insert({
+          type: 'text',
+          prompt: prompt,
+          result: data.text
+        });
+        
         toast({
           title: "Success!",
           description: "Text generated successfully",

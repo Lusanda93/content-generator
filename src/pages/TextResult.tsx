@@ -53,10 +53,8 @@ const TextResult = () => {
             
             {text ? (
               <div className="space-y-4">
-                <div className="prose prose-invert max-w-none">
-                  <pre className="whitespace-pre-wrap text-foreground bg-input/30 p-4 rounded-lg font-[Arial,sans-serif]">
-                    {text}
-                  </pre>
+                <div className="text-foreground bg-input/30 p-6 rounded-lg leading-relaxed">
+                  {text}
                 </div>
                 <Button
                   onClick={handleCopy}
