@@ -40,6 +40,15 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(263 70% 60%), hsl(280 80% 65%));
     --gradient-hero: linear-gradient(135deg, hsl(263 70% 50%), hsl(280 80% 55%), hsl(310 70% 60%));
     --gradient-card: linear-gradient(180deg, hsl(217 33% 20%), hsl(217 33% 15%));
+    --gradient-rainbow-3d: linear-gradient(135deg, 
+      hsl(0 100% 50%) 0%,
+      hsl(30 100% 50%) 14%,
+      hsl(60 100% 50%) 28%,
+      hsl(120 100% 50%) 42%,
+      hsl(180 100% 50%) 56%,
+      hsl(240 100% 50%) 70%,
+      hsl(280 100% 50%) 84%,
+      hsl(320 100% 50%) 100%);
     
     --shadow-glow: 0 0 40px hsl(263 70% 60% / 0.3);
     --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
