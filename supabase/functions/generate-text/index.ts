@@ -58,7 +58,7 @@ serve(async (req) => {
     }
 
     const data = await response.json();
-    const text = data.choices?.[0]?.message?.content;
+    const text = data.choices?.[0]?.message?.content.replace("*","");
 
     if (!text) {
       throw new Error("No text generated");
