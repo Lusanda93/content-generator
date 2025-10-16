@@ -31,7 +31,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: "You are a helpful AI assistant. Generate high-quality, creative content based on user prompts."
+            content: "You are a helpful AI assistant. Generate high-quality, creative content based on user prompts. Return the result in plain text"
           },
           {
             role: "user",
