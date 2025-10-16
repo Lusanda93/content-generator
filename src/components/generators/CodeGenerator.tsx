@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
@@ -11,6 +12,7 @@ const CodeGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [generatedCode, setGeneratedCode] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -35,6 +37,9 @@ const CodeGenerator = () => {
         toast({
           title: "Success!",
           description: "Code generated successfully",
+        });
+        navigate("/code-result", { 
+          state: { code: data.code, prompt } 
         });
       }
     } catch (error: any) {

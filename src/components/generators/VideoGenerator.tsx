@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
@@ -11,6 +12,7 @@ const VideoGenerator = () => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -33,6 +35,9 @@ const VideoGenerator = () => {
       toast({
         title: "Coming Soon",
         description: data.message || "Video generation feature is in development",
+      });
+      navigate("/video-result", { 
+        state: { prompt } 
       });
     } catch (error: any) {
       toast({

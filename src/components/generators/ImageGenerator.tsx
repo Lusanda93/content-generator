@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
@@ -11,6 +12,7 @@ const ImageGenerator = () => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleGenerate = async () => {
     if (!prompt.trim()) {
@@ -35,6 +37,9 @@ const ImageGenerator = () => {
         toast({
           title: "Success!",
           description: "Image generated successfully",
+        });
+        navigate("/image-result", { 
+          state: { imageUrl: data.imageUrl, prompt } 
         });
       }
     } catch (error: any) {
