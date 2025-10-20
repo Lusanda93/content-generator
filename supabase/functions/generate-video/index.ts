@@ -1,9 +1,17 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+const promptSchema = z.object({
+  prompt: z.string()
+    .trim()
+    .min(1, { message: "Prompt cannot be empty" })
+    .max(5000, { message: "Prompt must be less than 5000 characters" })
+});
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -11,7 +19,20 @@ serve(async (req) => {
   }
 
   try {
-    const { prompt } = await req.json();
+    const requestData = await req.json();
+    const parsed = promptSchema.safeParse(requestData);
+    
+    if (!parsed.success) {
+      return new Response(JSON.stringify({ 
+        error: "Invalid input", 
+        details: parsed.error.issues 
+      }), {
+        status: 400,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    
+    const { prompt } = parsed.data;
 
     console.log("Video generation requested with prompt:", prompt);
 
