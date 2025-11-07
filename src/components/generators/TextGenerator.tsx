@@ -26,6 +26,16 @@ const TextGenerator = () => {
 
     setLoading(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast({
+          title: "Error",
+          description: "Please sign in to generate content",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke("generate-text", {
         body: { prompt },
       });
@@ -39,7 +49,8 @@ const TextGenerator = () => {
         await supabase.from('generations').insert({
           type: 'text',
           prompt: prompt,
-          result: data.text
+          result: data.text,
+          user_id: session.user.id
         });
         
         toast({

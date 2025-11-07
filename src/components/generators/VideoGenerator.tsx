@@ -26,11 +26,29 @@ const VideoGenerator = () => {
 
     setLoading(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast({
+          title: "Error",
+          description: "Please sign in to generate content",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke("generate-video", {
         body: { prompt },
       });
 
       if (error) throw error;
+
+      // Save to history
+      await supabase.from('generations').insert({
+        type: 'video',
+        prompt: prompt,
+        result: data.message || 'Video generation pending',
+        user_id: session.user.id
+      });
 
       toast({
         title: "Coming Soon",

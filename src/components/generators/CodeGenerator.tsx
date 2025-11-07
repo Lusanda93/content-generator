@@ -26,6 +26,16 @@ const CodeGenerator = () => {
 
     setLoading(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast({
+          title: "Error",
+          description: "Please sign in to generate content",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke("generate-code", {
         body: { prompt },
       });
@@ -34,6 +44,15 @@ const CodeGenerator = () => {
 
       if (data.code) {
         setGeneratedCode(data.code);
+        
+        // Save to history
+        await supabase.from('generations').insert({
+          type: 'code',
+          prompt: prompt,
+          result: data.code,
+          user_id: session.user.id
+        });
+        
         toast({
           title: "Success!",
           description: "Code generated successfully",

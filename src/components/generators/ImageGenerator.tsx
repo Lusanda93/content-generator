@@ -26,6 +26,16 @@ const ImageGenerator = () => {
 
     setLoading(true);
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        toast({
+          title: "Error",
+          description: "Please sign in to generate content",
+          variant: "destructive",
+        });
+        return;
+      }
+
       const { data, error } = await supabase.functions.invoke("generate-image", {
         body: { prompt },
       });
@@ -34,6 +44,15 @@ const ImageGenerator = () => {
 
       if (data.imageUrl) {
         setImageUrl(data.imageUrl);
+        
+        // Save to history
+        await supabase.from('generations').insert({
+          type: 'image',
+          prompt: prompt,
+          result: data.imageUrl,
+          user_id: session.user.id
+        });
+        
         toast({
           title: "Success!",
           description: "Image generated successfully",
