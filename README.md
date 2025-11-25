@@ -2,8 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/442667cb-d97c-4a9c-a6b8-c81e8f1a14a3
-
+**URL**: https://idea-weaver-verse.lovable.app/
 ## How can I edit this code?
 
 There are several ways of editing your application.
