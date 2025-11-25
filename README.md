@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/442667cb-d97c-4a9c-a6b8-c81e8f1a14a3) and start prompting.
+Simply visit the [Lovable Project](https://idea-weaver-verse.lovable.app/) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
@@ -62,7 +62,7 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/442667cb-d97c-4a9c-a6b8-c81e8f1a14a3) and click on Share -> Publish.
+Simply open [Lovable](https://idea-weaver-verse.lovable.app/) and click on Share -> Publish.
 
 ## Can I connect a custom domain to my Lovable project?
 
